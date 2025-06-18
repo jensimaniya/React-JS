@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import Accordions from "./components/Accordion";
+import Accordions from "./components/Bootstreap/Accordion";
 import "tailwindcss";
 import HeroSection from "./components/telwindCss/herosection";
 import Demo from "./components/chakrUI/chakrui";
