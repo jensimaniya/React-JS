@@ -1,3 +1,13 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": "73b1",
+      "username": "trer",
+      "age": "34",
+      "phoneno": "9879488160",
+      "address": "surat",
+      "gender": "male",
+      "agree": true
+    }
+  ]
 }
