@@ -157,8 +157,8 @@ const AddUser = () => {
            onChange={handleOptionChange}
            className="accent-purple-600"
          />
-         <Label htmlFor="remember" className="text-sm">
-           Remember me
+         <Label htmlFor="remember" className="text-sm ">
+           <span className="text-sm text-gray-700">Remember me</span>
          </Label>
        </div>
 
