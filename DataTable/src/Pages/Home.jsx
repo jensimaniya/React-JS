@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Typography,
@@ -8,6 +8,11 @@ import {
   CardContent,
   CardActions,
   IconButton,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Box,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -15,10 +20,8 @@ import { useNavigate } from "react-router-dom";
 
 function Home({ items, searchTerm, setItems }) {
   const navigate = useNavigate();
-
-  const filtered = items.filter((item) =>
-    item.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const [sortOrder, setSortOrder] = useState("low"); // 'low' or 'high'
+  const [categoryFilter, setCategoryFilter] = useState("all"); // new category filter
 
   const handleDelete = (id) => {
     fetch(`http://localhost:3000/Item/${id}`, { method: "DELETE" })
@@ -28,27 +31,99 @@ function Home({ items, searchTerm, setItems }) {
       .catch(console.error);
   };
 
+  // Get unique categories from items
+  const categories = [
+    "all",
+    ...Array.from(new Set(items.map((item) => item.category).filter(Boolean))),
+  ];
+
+  // Filter by search term and category, then sort by price
+  const filtered = items
+    .filter((item) =>
+      item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .filter((item) =>
+      categoryFilter === "all" ? true : item.category === categoryFilter
+    )
+    .sort((a, b) => {
+      if (sortOrder === "low") return a.price - b.price;
+      else return b.price - a.price;
+    });
+
   return (
     <Container sx={{ mt: 4 }}>
-      <Typography variant="h4" gutterBottom>
-        Product List
-      </Typography>
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        mb={3}
+        flexWrap="wrap"
+        gap={2}
+      >
+        <Typography variant="h4" gutterBottom>
+          Product List
+        </Typography>
+
+        {/* Category Filter Dropdown */}
+        <FormControl size="small" sx={{ minWidth: 140 }}>
+          <InputLabel id="category-label">Category</InputLabel>
+          <Select
+            labelId="category-label"
+            value={categoryFilter}
+            label="Category"
+            onChange={(e) => setCategoryFilter(e.target.value)}
+          >
+            {categories.map((cat) => (
+              <MenuItem key={cat} value={cat}>
+                {cat.charAt(0).toUpperCase() + cat.slice(1)}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        {/* Sort by Price Dropdown */}
+        <FormControl size="small" sx={{ minWidth: 140 }}>
+          <InputLabel id="sort-label">Sort by Price</InputLabel>
+          <Select
+            labelId="sort-label"
+            value={sortOrder}
+            label="Sort by Price"
+            onChange={(e) => setSortOrder(e.target.value)}
+          >
+            <MenuItem value="low">Low to High</MenuItem>
+            <MenuItem value="high">High to Low</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+
       {filtered.length === 0 ? (
         <Typography>No matching products.</Typography>
       ) : (
         <Grid container spacing={3}>
           {filtered.map((item) => (
             <Grid key={item.id} item xs={12} sm={6} md={4}>
-              <Card>
+              <Card
+                sx={{
+                  height: 360,
+                  width: 270,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  mx: "auto",
+                }}
+              >
                 <CardMedia
                   component="img"
-                  height="140"
                   src={item.image}
                   alt={item.name}
+                  sx={{ height: 180, width: "100%", objectFit: "cover" }}
                 />
                 <CardContent>
                   <Typography variant="h6">{item.name}</Typography>
                   <Typography>${item.price.toFixed(2)}</Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Category: {item.category || "N/A"}
+                  </Typography>
                 </CardContent>
                 <CardActions>
                   <IconButton

@@ -6,6 +6,10 @@ import {
   Typography,
   Box,
   Paper,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
 
 const AddItem = () => {
@@ -13,7 +17,10 @@ const AddItem = () => {
     image: "",
     name: "",
     price: "",
+    category: "", // <-- નવું ફીલ્ડ ઉમેર્યું
   });
+
+  const categories = ["Food", "Beverages", "Snacks", "Desserts"]; // તમારી જરૂર મુજબ કેટેગરીઝ અહીં બદલો
 
   const handleChange = (e) => {
     setFormData({
@@ -33,12 +40,13 @@ const AddItem = () => {
           image: formData.image,
           name: formData.name,
           price: parseFloat(formData.price),
+          category: formData.category, // સર્વરમાં પણ મોકલવું
         }),
       });
 
       if (res.ok) {
         alert("✅ Product added successfully!");
-        setFormData({ image: "", name: "", price: "" });
+        setFormData({ image: "", name: "", price: "", category: "" });
       } else {
         alert("❌ Failed to add product.");
       }
@@ -121,6 +129,33 @@ const AddItem = () => {
               "& .MuiFilledInput-root": { borderRadius: 2 },
             }}
           />
+
+          {/* Category dropdown */}
+          <FormControl
+            variant="filled"
+            fullWidth
+            required
+            sx={{
+              backgroundColor: "rgba(255,255,255,0.85)",
+              borderRadius: 2,
+              "& .MuiFilledInput-root": { borderRadius: 2 },
+            }}
+          >
+            <InputLabel id="category-label">📂 Category</InputLabel>
+            <Select
+              labelId="category-label"
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              label="Category"
+            >
+              {categories.map((cat) => (
+                <MenuItem key={cat} value={cat}>
+                  {cat}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
           <Button
             type="submit"

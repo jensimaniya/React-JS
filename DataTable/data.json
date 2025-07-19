@@ -1,10 +1,179 @@
 {
   "Item": [
     {
-      "id": "38ad",
-      "image": "https://images.unsplash.com/photo-1575936123452-b67c3203c357?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D",
-      "name": "JensiManiya",
-      "price": 34
+      "id": "1",
+      "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=800",
+      "name": "Paneer-Chili",
+      "price": 340,
+      "category": "Food"
+    },
+    {
+      "id": "2",
+      "image": "https://thecrunchburger.com/wp-content/uploads/2024/03/Burger-1-1.png",
+      "name": "Burger",
+      "price": 123,
+      "category": "Food"
+    },
+    {
+      "id": "3",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9Shps5-Royer8jQZdryDBeVDWonLFMkl2ew&s",
+      "name": "Pizza",
+      "price": 499,
+      "category": "Food"
+    },
+    {
+      "id": "4",
+      "image": "https://i.ytimg.com/vi/Do7ZdUodDdw/maxresdefault.jpg",
+      "name": "Veg Biryani",
+      "price": 250,
+      "category": "Food"
+    },
+    {
+      "id": "5",
+      "image": "https://recipes.timesofindia.com/thumb/61050397.cms?width=1200&height=900",
+      "name": "Samosa",
+      "price": 40,
+      "category": "Food"
+    },
+    {
+      "id": "6",
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800",
+      "name": "Cheeseburger",
+      "price": 189,
+      "category": "Food"
+    },
+    {
+      "id": "7",
+      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800",
+      "name": "Pasta",
+      "price": 280,
+      "category": "Food"
+    },
+    {
+      "id": "8",
+      "image": "https://www.thespruceeats.com/thmb/6Ijd0M6aeo2rDxbrwvZ-CUFtk44=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/how-to-make-homemade-french-fries-2215971-step-08-00f9e1627d0541a89ece39e2ec72bd7d.jpg",
+      "name": "French Fries",
+      "price": 110,
+      "category": "Food"
+    },
+    {
+      "id": "9",
+      "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=800",
+      "name": "Paneer-Chili",
+      "price": 130,
+      "category": "Food"
+    },
+    {
+      "id": "10",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfR7M1KZeuqIfj3R9qz-Jk_Gp5epwkdEL9-Q&s",
+      "name": "Fried Rice",
+      "price": 200,
+      "category": "Food"
+    },
+    {
+      "id": "11",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkE_XlgfQ0DG7bJhZSnbvQeGgKZ1EsLJMrn9lEFyQE-i3wn2rXwJTG3yru-rrlOBB1Xqw&usqp=CAU",
+      "name": "Spring Roll",
+      "price": 160,
+      "category": "Food"
+    },
+    {
+      "id": "12",
+      "image": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/6c1f9ffa-c28f-4587-877d-463bc8ca6e8d/dfcbnch-789ad96b-7f60-4ea2-837b-f31937beeafe.png",
+      "name": "Manchurian",
+      "price": 240,
+      "category": "Food"
+    },
+    {
+      "id": "13",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrDdSW5CNpqURjZggXbmTg1gUJypMtUXxkxA&s",
+      "name": "Momos",
+      "price": 100,
+      "category": "Food"
+    },
+    {
+      "id": "14",
+      "image": "https://images.unsplash.com/photo-1555243896-c709bfa0b564?auto=format&fit=crop&w=800",
+      "name": "Tandoori Roti",
+      "price": 25,
+      "category": "Food"
+    },
+    {
+      "id": "15",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVPvcZIxeA9bZukK18CymY32OqFUTVbkKXgQ&s",
+      "name": "Noodles",
+      "price": 180,
+      "category": "Food"
+    },
+    {
+      "id": "16",
+      "image": "https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=800",
+      "name": "Chole Bhature",
+      "price": 210,
+      "category": "Food"
+    },
+    {
+      "id": "17",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV-8GMEL1suUh34eyCtaTk-z75PC-klHkLRA&s",
+      "name": "Dosa",
+      "price": 150,
+      "category": "Food"
+    },
+    {
+      "id": "18",
+      "image": "https://www.mapsofindia.com/ci-moi-images/my-india/Idli-Sambhar.jpg",
+      "name": "Idli-Sambhar",
+      "price": 90,
+      "category": "Food"
+    },
+    {
+      "id": "19",
+      "image": "https://cookingfromheart.com/wp-content/uploads/2017/03/Paneer-Tikka-Masala-4.jpg",
+      "name": "Paneer Tikka",
+      "price": 350,
+      "category": "Food"
+    },
+    {
+      "id": "20",
+      "image": "https://static.toiimg.com/thumb/msid-112019658,width-1280,height-720,resizemode-4/112019658.jpg",
+      "name": "Ice Cream",
+      "price": 60,
+      "category": "Dessert"
+    },
+    {
+      "id": "21",
+      "image": "https://inbloombakery.com/wp-content/uploads/2022/04/chocolate-drip-cake-featured-image-500x500.jpg",
+      "name": "Chocolate Cake",
+      "price": 180,
+      "category": "Dessert"
+    },
+    {
+      "id": "22",
+      "image": "https://content.jdmagicbox.com/comp/def_content/pav-bhaji-centres/pav-bhaji-recipe-in-hindi-1280x720-pav-bhaji-centres-9-n86dx.jpg",
+      "name": "Pav Bhaji",
+      "price": 140,
+      "category": "Food"
+    },
+    {
+      "id": "23",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ080A9xuw9fjLw89hys9KejF8vN9NexnrO0Q&s",
+      "name": "Falooda",
+      "price": 120,
+      "category": "Dessert"
+    },
+    {
+      "id": "24",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTczKp1swQNW_iVwwIt2eKHDzMTBAWFF_Crtw&s",
+      "name": "Thali",
+      "price": 300,
+      "category": "Food"
+    },
+    {
+      "id": "25",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY6h2yiPEB430X-AXWWWQK9c8B0CfQMDb2dQ&s",
+      "name": "Curd Rice",
+      "price": 100,
+      "category": "Food"
     }
   ]
 }
