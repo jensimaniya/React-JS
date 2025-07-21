@@ -92,13 +92,6 @@
       "category": "Food"
     },
     {
-      "id": "14",
-      "image": "https://images.unsplash.com/photo-1555243896-c709bfa0b564?auto=format&fit=crop&w=800",
-      "name": "Tandoori Roti",
-      "price": 25,
-      "category": "Food"
-    },
-    {
       "id": "15",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVPvcZIxeA9bZukK18CymY32OqFUTVbkKXgQ&s",
       "name": "Noodles",
@@ -174,6 +167,13 @@
       "name": "Curd Rice",
       "price": 100,
       "category": "Food"
+    },
+    {
+      "id": "1b34",
+      "image": "https://assets.myntassets.com/w_412,q_60,dpr_2,fl_progressive/assets/images/1461506/2022/4/26/ab035d42-bb64-4ca2-9823-1a4ff55763a01650952946239-DressBerry-Women-Rose-Gold-Toned-Analogue-Watch-MFB-PN-WTH-S-1.jpg",
+      "name": "Jensi",
+      "price": 123,
+      "category": "Beverages"
     }
   ]
 }

@@ -20,8 +20,8 @@ import { useNavigate } from "react-router-dom";
 
 function Home({ items, searchTerm, setItems }) {
   const navigate = useNavigate();
-  const [sortOrder, setSortOrder] = useState("low"); // 'low' or 'high'
-  const [categoryFilter, setCategoryFilter] = useState("all"); // new category filter
+  const [sortOrder, setSortOrder] = useState("low");
+  const [categoryFilter, setCategoryFilter] = useState("all");
 
   const handleDelete = (id) => {
     fetch(`http://localhost:3000/Item/${id}`, { method: "DELETE" })
@@ -31,13 +31,11 @@ function Home({ items, searchTerm, setItems }) {
       .catch(console.error);
   };
 
-  // Get unique categories from items
   const categories = [
     "all",
     ...Array.from(new Set(items.map((item) => item.category).filter(Boolean))),
   ];
 
-  // Filter by search term and category, then sort by price
   const filtered = items
     .filter((item) =>
       item.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -64,7 +62,6 @@ function Home({ items, searchTerm, setItems }) {
           Product List
         </Typography>
 
-        {/* Category Filter Dropdown */}
         <FormControl size="small" sx={{ minWidth: 140 }}>
           <InputLabel id="category-label">Category</InputLabel>
           <Select
@@ -81,7 +78,6 @@ function Home({ items, searchTerm, setItems }) {
           </Select>
         </FormControl>
 
-        {/* Sort by Price Dropdown */}
         <FormControl size="small" sx={{ minWidth: 140 }}>
           <InputLabel id="sort-label">Sort by Price</InputLabel>
           <Select
@@ -125,18 +121,36 @@ function Home({ items, searchTerm, setItems }) {
                     Category: {item.category || "N/A"}
                   </Typography>
                 </CardContent>
-                <CardActions>
+
+                {/* Consistent styled buttons */}
+                <CardActions sx={{ justifyContent: "space-between", px: 2 }}>
                   <IconButton
                     onClick={() =>
                       navigate(`/edit-item/${item.id}`, { state: { item } })
                     }
                     color="primary"
+                    sx={{
+                      border: "1px solid #1976d2",
+                      borderRadius: 1,
+                      transition: "all 0.2s",
+                      "&:hover": {
+                        backgroundColor: "#e3f2fd",
+                      },
+                    }}
                   >
                     <EditIcon />
                   </IconButton>
                   <IconButton
                     onClick={() => handleDelete(item.id)}
                     color="error"
+                    sx={{
+                      border: "1px solid #d32f2f",
+                      borderRadius: 1,
+                      transition: "all 0.2s",
+                      "&:hover": {
+                        backgroundColor: "#fdecea",
+                      },
+                    }}
                   >
                     <DeleteIcon />
                   </IconButton>
