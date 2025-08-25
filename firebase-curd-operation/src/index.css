@@ -1,0 +1,11 @@
+/* @import "tailwindcss";
+
+@layer components {
+  .head {
+    @apply bg-gradient-to-r from-pink-400 to-pink-600 text-white text-center text-5xl font-extrabold py-6 shadow-lg rounded-md;
+  }
+
+  .btn {
+    @apply bg-purple-800 hover:bg-purple-700 text-white text-center text-lg font-semibold py-3 px-6 m-2 rounded-full transition duration-300 ease-in-out shadow-md;
+  }
+} */
