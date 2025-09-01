@@ -1,0 +1,7 @@
+{
+  "rooms": [
+    { "id": 1, "type": "Relax", "price": 3000 },
+    { "id": 2, "type": "Suite", "price": 5000 },
+    { "id": 3, "type": "Standard", "price": 2000 }
+  ]
+}

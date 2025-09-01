@@ -50,4 +50,25 @@ button {
 }
 
 
+.home-text {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  color:#305fbe;
+  font-family: sans-serif;
+}
+
+.home-subtitle {
+  font-size: 1.125rem; /* equivalent to text-lg */
+  margin-bottom: 1rem; /* mb-4 */
+  line-height: 1.6;
+}
+
+.home-description {
+  font-size: 1rem; /* equivalent to text-md */
+  color: #305fbe;    /* Tailwind's text-gray-200 */
+  margin-bottom: 2rem; /* mb-8 */
+  line-height: 1.6;
+}
 

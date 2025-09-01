@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Rooms from './components/Rooms';
-// import BookingForm from './components/Bookingform';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Bookings from './components/Bookings';
 import Admin from './components/Admin';
 
