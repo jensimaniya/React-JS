@@ -11,14 +11,14 @@ body {
 
 .navbar {
   background: #003366;
-  color: white;
+  color: #f5f5f5;
   padding: 15px 20px;
   display: flex;
   justify-content: space-between;
 }
 
 .navbar a {
-  color: white;
+  color: #f5f5f5;
   margin-left: 15px;
   text-decoration: none;
 }
@@ -44,7 +44,7 @@ form input, form select, form button {
 
 button {
   background: #003366;
-  color: white;
+  color: #305fbe;
   border: none;
   cursor: pointer;
 }

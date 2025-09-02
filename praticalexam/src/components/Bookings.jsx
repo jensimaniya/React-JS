@@ -65,69 +65,73 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-blue-900 text-white p-6 font-sans">
-      <h1 className="text-4xl font-bold mb-8 text-center">VIT Hotel Room Management</h1>
+    <div className="min-h-screen bg-blue-900 text-primary p-6 font-sans">
+      <h1 className="text-4xl font-bold mb-8 text-center">
+        VIT Hotel Room Management
+      </h1>
 
       {/* Form */}
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-lg mx-auto bg-blue-800 p-6 rounded-lg shadow-lg mb-10"
-      >
-        <h2 className="text-2xl font-semibold mb-4">
-          {editing ? 'Edit Room' : 'Add New Room'}
-        </h2>
-        <div className="mb-4">
-          <label htmlFor="name" className="block mb-1 font-medium">
-            Room Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value={form.name}
-            onChange={handleChange}
-            className="w-full p-2 rounded bg-blue-700 text-white border border-blue-600 focus:outline-yellow-400"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="type" className="block mb-1 font-medium">
-            Room Type
-          </label>
-          <select
-            name="type"
-            id="type"
-            value={form.type}
-            onChange={handleChange}
-            className="w-full p-2 rounded bg-blue-700 text-white border border-blue-600 focus:outline-yellow-400"
-          >
-            <option value="">Select type</option>
-            <option value="Professional">Professional</option>
-            <option value="Relax">Relax</option>
-            <option value="Simple">Simple</option>
-          </select>
-        </div>
-        <div className="mb-6">
-          <label htmlFor="price" className="block mb-1 font-medium">
-            Price ($)
-          </label>
-          <input
-            type="number"
-            name="price"
-            id="price"
-            value={form.price}
-            onChange={handleChange}
-            className="w-full p-2 rounded bg-blue-700 text-white border border-blue-600 focus:outline-yellow-400"
-            placeholder="Ex: 150"
-            min="0"
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-yellow-400 text-blue-900 font-bold py-3 rounded hover:bg-yellow-300 transition"
+      <div className="container mx-auto px-4">
+        <form
+          onSubmit={handleSubmit}
+          className="max-w-lg mx-auto p-4 bg-blue-800 p-6 rounded-lg shadow-lg mb-10"
         >
-          {editing ? 'Update Room' : 'Add Room'}
-        </button>
-      </form>
+          <h2 className="text-2xl font-semibold mb-4">
+            {editing ? "Edit Room" : "Add New Room"}
+          </h2>
+          <div className="mb-4">
+            <label htmlFor="name" className="block mb-1 font-medium">
+              Room Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={form.name}
+              onChange={handleChange}
+              className="w-full p-2 rounded bg-blue-700 text-primary border border-blue-600 focus:outline-yellow-400"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="type" className="block mb-1 font-medium">
+              Room Type
+            </label>
+            <select
+              name="type"
+              id="type"
+              value={form.type}
+              onChange={handleChange}
+              className="w-full p-2 rounded bg-blue-700 text-primary border border-blue-600 focus:outline-yellow-400"
+            >
+              <option value="">Select type</option>
+              <option value="Professional">Professional</option>
+              <option value="Relax">Relax</option>
+              <option value="Simple">Simple</option>
+            </select>
+          </div>
+          <div className="mb-6">
+            <label htmlFor="price" className="block mb-1 font-medium">
+              Price ($)
+            </label>
+            <input
+              type="number"
+              name="price"
+              id="price"
+              value={form.price}
+              onChange={handleChange}
+              className="w-full p-2 rounded bg-blue-700 text-primary border border-blue-600 focus:outline-yellow-400"
+              placeholder="Ex: 150"
+              min="0"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-yellow-400 text-blue-900 font-bold  text-light py-3 rounded hover:bg-yellow-300 transition"
+          >
+            {editing ? "Update Room" : "Add Room"}
+          </button>
+        </form>
+      </div>
 
       {/* Table */}
       <div className="overflow-x-auto max-w-4xl mx-auto">
@@ -153,19 +157,25 @@ const Home = () => {
                   key={room.id}
                   className="odd:bg-blue-700 even:bg-blue-800 hover:bg-yellow-400 hover:text-blue-900 transition"
                 >
-                  <td className="border border-blue-600 px-4 py-2">{room.name}</td>
-                  <td className="border border-blue-600 px-4 py-2">{room.type}</td>
-                  <td className="border border-blue-600 px-4 py-2">{room.price}</td>
+                  <td className="border border-blue-600 px-4 py-2">
+                    {room.name}
+                  </td>
+                  <td className="border border-blue-600 px-4 py-2">
+                    {room.type}
+                  </td>
+                  <td className="border border-blue-600 px-4 py-2">
+                    {room.price}
+                  </td>
                   <td className="border border-blue-600 px-4 py-2 space-x-3">
                     <button
                       onClick={() => handleEdit(room)}
-                      className="bg-yellow-400 px-3 py-1 rounded font-semibold hover:bg-yellow-300"
+                      className="bg-yellow-400 px-3 m-4 py-1 text-light rounded font-semibold hover:bg-yellow-300"
                     >
                       Edit
                     </button>
                     <button
                       onClick={() => handleDelete(room.id)}
-                      className="bg-red-600 px-3 py-1 rounded font-semibold hover:bg-red-500"
+                      className="bg-red-600 px-3 py-1 rounded  text-light font-semibold hover:bg-red-500"
                     >
                       Delete
                     </button>

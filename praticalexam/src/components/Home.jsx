@@ -48,7 +48,7 @@ const Home = () => {
             Choose from Relax, Suite, or Standard rooms — all crafted for your
             comfort.
           </p>
-        </div>
+        </div>  
         <div className="bg-blue-800 p-6 rounded-lg shadow-md hover:shadow-lg transition">
           <h3 className="text-xl font-semibold mb-2 text-dark">
             🍽️ In-Room Dining
