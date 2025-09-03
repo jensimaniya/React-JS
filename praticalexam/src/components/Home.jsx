@@ -5,7 +5,7 @@ const Home = () => {
     <div className="min-h-screen bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white flex flex-col items-center px-4 py-10">
       {/* Top Section */}
       <div className="text-center max-w-2xl">
-        <h1 className="text-5xl font-bold mb-6">Welcome to VIT Hotel</h1>
+        <h1 className="text-5xl text-dark m-3 font-bold mb-6">Welcome to VIT Hotel</h1>
         <div className="home-text">
           <p className="home-subtitle">
             Experience the perfect blend of comfort, elegance, and premium

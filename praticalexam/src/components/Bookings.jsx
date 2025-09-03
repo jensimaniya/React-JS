@@ -1,192 +1,176 @@
-import React, { useState, useEffect } from 'react';
+// Home.jsx
+import React, { useState, useEffect } from "react";
+import {
+  Form,
+  Button,
+  Table,
+  Container,
+  Row,
+  Col,
+  Card,
+} from "react-bootstrap";
 
-const LOCAL_STORAGE_KEY = 'vitHotelRooms';
+const API_URL = "http://localhost:3000/rooms";
 
 const Home = () => {
   const [rooms, setRooms] = useState([]);
-  const [form, setForm] = useState({ id: null, name: '', type: '', price: '' });
+  const [form, setForm] = useState({ id: null, name: "", type: "", price: "" });
   const [editing, setEditing] = useState(false);
 
-  // Load from localStorage on mount
+  const fetchRooms = () => {
+    fetch(API_URL)
+      .then((r) => r.json())
+      .then(setRooms)
+      .catch(console.error);
+  };
+
   useEffect(() => {
-    const savedRooms = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    if (savedRooms) setRooms(savedRooms);
+    fetchRooms();
   }, []);
 
-  // Save rooms to localStorage on rooms change
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(rooms));
-  }, [rooms]);
-
-  // Handle form input changes
-  const handleChange = (e) => {
+  const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
-  };
 
-  // Add or update room
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!form.name || !form.type || !form.price)
+      return alert("Please fill all fields");
+    const method = editing ? "PUT" : "POST";
+    const url = editing ? `${API_URL}/${form.id}` : API_URL;
+    const payload = {
+      name: form.name,
+      type: form.type,
+      price: Number(form.price),
+    };
 
-    if (!form.name || !form.type || !form.price) {
-      alert('Please fill all fields');
-      return;
-    }
-
-    if (editing) {
-      // Update existing room
-      setRooms(
-        rooms.map((room) =>
-          room.id === form.id ? { ...form, price: Number(form.price) } : room
-        )
-      );
-      setEditing(false);
-    } else {
-      // Add new room
-      setRooms([
-        ...rooms,
-        { ...form, id: Date.now(), price: Number(form.price) },
-      ]);
-    }
-
-    setForm({ id: null, name: '', type: '', price: '' });
+    fetch(url, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setRooms((rs) =>
+          editing ? rs.map((r) => (r.id === data.id ? data : r)) : [...rs, data]
+        );
+        setEditing(false);
+        setForm({ id: null, name: "", type: "", price: "" });
+      })
+      .catch(console.error);
   };
 
-  // Edit room
   const handleEdit = (room) => {
-    setForm({ id: room.id, name: room.name, type: room.type, price: room.price });
+    setForm(room);
     setEditing(true);
   };
 
-  // Delete room
   const handleDelete = (id) => {
-    if (window.confirm('Are you sure you want to delete this room?')) {
-      setRooms(rooms.filter((room) => room.id !== id));
-    }
+    if (!window.confirm("Are you sure?")) return;
+    fetch(`${API_URL}/${id}`, { method: "DELETE" })
+      .then(() => setRooms((rs) => rs.filter((r) => r.id !== id)))
+      .catch(console.error);
   };
 
   return (
-    <div className="min-h-screen bg-blue-900 text-primary p-6 font-sans">
-      <h1 className="text-4xl font-bold mb-8 text-center">
-        VIT Hotel Room Management
-      </h1>
+    <Container className="py-4">
+      <h1 className="text-center mb-4">Room Management</h1>
 
-      {/* Form */}
-      <div className="container mx-auto px-4">
-        <form
-          onSubmit={handleSubmit}
-          className="max-w-lg mx-auto p-4 bg-blue-800 p-6 rounded-lg shadow-lg mb-10"
-        >
-          <h2 className="text-2xl font-semibold mb-4">
-            {editing ? "Edit Room" : "Add New Room"}
-          </h2>
-          <div className="mb-4">
-            <label htmlFor="name" className="block mb-1 font-medium">
-              Room Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              value={form.name}
-              onChange={handleChange}
-              className="w-full p-2 rounded bg-blue-700 text-primary border border-blue-600 focus:outline-yellow-400"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="type" className="block mb-1 font-medium">
-              Room Type
-            </label>
-            <select
-              name="type"
-              id="type"
-              value={form.type}
-              onChange={handleChange}
-              className="w-full p-2 rounded bg-blue-700 text-primary border border-blue-600 focus:outline-yellow-400"
-            >
-              <option value="">Select type</option>
-              <option value="Professional">Professional</option>
-              <option value="Relax">Relax</option>
-              <option value="Simple">Simple</option>
-            </select>
-          </div>
-          <div className="mb-6">
-            <label htmlFor="price" className="block mb-1 font-medium">
-              Price ($)
-            </label>
-            <input
-              type="number"
-              name="price"
-              id="price"
-              value={form.price}
-              onChange={handleChange}
-              className="w-full p-2 rounded bg-blue-700 text-primary border border-blue-600 focus:outline-yellow-400"
-              placeholder="Ex: 150"
-              min="0"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-yellow-400 text-blue-900 font-bold  text-light py-3 rounded hover:bg-yellow-300 transition"
-          >
-            {editing ? "Update Room" : "Add Room"}
-          </button>
-        </form>
-      </div>
+      <Card className="mb-4">
+        <Card.Body>
+          <Form onSubmit={handleSubmit}>
+            <Row className="g-2">
+              <Col md>
+                <Form.Group>
+                  <Form.Label>Room Name</Form.Label>
+                  <Form.Control
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    placeholder="Enter room name"
+                  />
+                </Form.Group>
+              </Col>
+              <Col md>
+                <Form.Group>
+                  <Form.Label>Type</Form.Label>
+                  <Form.Select
+                    name="type"
+                    value={form.type}
+                    onChange={handleChange}
+                  >
+                    <option value="">Select type</option>
+                    <option>Relax</option>
+                    <option>Suite</option>
+                    <option>Simple</option>
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+              <Col md>
+                <Form.Group>
+                  <Form.Label>Price (₹)</Form.Label>
+                  <Form.Control
+                    type="number"
+                    name="price"
+                    value={form.price}
+                    onChange={handleChange}
+                    placeholder="Enter price"
+                  />
+                </Form.Group>
+              </Col>
+              <Col md="auto" className="d-flex align-items-end">
+                <Button type="submit" variant={editing ? "warning" : "primary"}>
+                  {editing ? "Update" : "Add"} Room
+                </Button>
+              </Col>
+            </Row>
+          </Form>
+        </Card.Body>
+      </Card>
 
-      {/* Table */}
-      <div className="overflow-x-auto max-w-4xl mx-auto">
-        <table className="w-full table-auto border-collapse border border-blue-600">
-          <thead>
-            <tr className="bg-blue-800 text-yellow-400">
-              <th className="border border-blue-600 px-4 py-2">Room Name</th>
-              <th className="border border-blue-600 px-4 py-2">Type</th>
-              <th className="border border-blue-600 px-4 py-2">Price ($)</th>
-              <th className="border border-blue-600 px-4 py-2">Actions</th>
+      <Table bordered hover responsive>
+        <thead className="table-light">
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Price (₹)</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rooms.length === 0 ? (
+            <tr>
+              <td colSpan="4" className="text-center text-muted py-4">
+                No rooms yet.
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {rooms.length === 0 ? (
-              <tr>
-                <td colSpan="4" className="text-center py-6 text-gray-300">
-                  No rooms added yet.
+          ) : (
+            rooms.map((r) => (
+              <tr key={r.id}>
+                <td>{r.name}</td>
+                <td>{r.type}</td>
+                <td>₹{r.price}</td>
+                <td>
+                  <Button
+                    size="sm"
+                    variant="outline-secondary"
+                    onClick={() => handleEdit(r)}
+                  >
+                    Edit
+                  </Button>{" "}
+                  <Button
+                    size="sm"
+                    variant="outline-danger"
+                    onClick={() => handleDelete(r.id)}
+                  >
+                    Delete
+                  </Button>
                 </td>
               </tr>
-            ) : (
-              rooms.map((room) => (
-                <tr
-                  key={room.id}
-                  className="odd:bg-blue-700 even:bg-blue-800 hover:bg-yellow-400 hover:text-blue-900 transition"
-                >
-                  <td className="border border-blue-600 px-4 py-2">
-                    {room.name}
-                  </td>
-                  <td className="border border-blue-600 px-4 py-2">
-                    {room.type}
-                  </td>
-                  <td className="border border-blue-600 px-4 py-2">
-                    {room.price}
-                  </td>
-                  <td className="border border-blue-600 px-4 py-2 space-x-3">
-                    <button
-                      onClick={() => handleEdit(room)}
-                      className="bg-yellow-400 px-3 m-4 py-1 text-light rounded font-semibold hover:bg-yellow-300"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDelete(room.id)}
-                      className="bg-red-600 px-3 py-1 rounded  text-light font-semibold hover:bg-red-500"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-    </div>
+            ))
+          )}
+        </tbody>
+      </Table>
+    </Container>
   );
 };
 

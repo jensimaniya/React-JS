@@ -1,7 +1,26 @@
 {
   "rooms": [
-    { "id": 1, "type": "Relax", "price": 3000 },
-    { "id": 2, "type": "Suite", "price": 5000 },
-    { "id": 3, "type": "Standard", "price": 2000 }
+    {
+      "name": "jay",
+      "type": "Relax",
+      "price": 5000,
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "type": "Suite",
+      "price": 5000
+    },
+    {
+      "id": "3",
+      "type": "Standard",
+      "price": 2000
+    },
+    {
+      "id": "bae8",
+      "name": "Jensi",
+      "type": "Suite",
+      "price": 123
+    }
   ]
 }
